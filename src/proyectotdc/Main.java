@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 public class Main extends javax.swing.JFrame {
 
-    ArrayList<Nodo> listaNodos = new ArrayList();
+    ArrayList<Nodo> listaVertices = new ArrayList();
     ArrayList<Linea> lines = new ArrayList();
     Graphics g;
     Graphics c;
@@ -37,6 +37,11 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jd_grados = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jtxt_inputgradovertice = new javax.swing.JTextField();
         jp_mainpanel = new javax.swing.JPanel();
         jb_agregarnodo = new javax.swing.JButton();
         jb_limpiar = new javax.swing.JButton();
@@ -51,12 +56,56 @@ public class Main extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jbt_grado = new javax.swing.JToggleButton();
+
+        jButton2.setText("Calcular grado por vértice");
+
+        jButton3.setText("Calcular grado total");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(131, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jtxt_inputgradovertice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(119, 119, 119))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(160, 160, 160))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jtxt_inputgradovertice, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(102, 102, 102)
+                .addComponent(jButton3)
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jd_gradosLayout = new javax.swing.GroupLayout(jd_grados.getContentPane());
+        jd_grados.getContentPane().setLayout(jd_gradosLayout);
+        jd_gradosLayout.setHorizontalGroup(
+            jd_gradosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_gradosLayout.setVerticalGroup(
+            jd_gradosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jp_mainpanel.setBackground(new java.awt.Color(0, 0, 0));
 
-        jb_agregarnodo.setText("Nuevo Nodo");
+        jb_agregarnodo.setText("Nuevo vértice");
         jb_agregarnodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_agregarnodoActionPerformed(evt);
@@ -100,7 +149,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel2.setText("GRAPHICS E&D");
+        jLabel2.setText("GRAPHICS E&D&L");
 
         jtf_destino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,37 +174,46 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jbt_grado.setText("Ver grados");
+        jbt_grado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbt_gradoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jp_mainpanelLayout = new javax.swing.GroupLayout(jp_mainpanel);
         jp_mainpanel.setLayout(jp_mainpanelLayout);
         jp_mainpanelLayout.setHorizontalGroup(
             jp_mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_mainpanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jp_mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jp_mainpanelLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jb_dibujar))
-                    .addGroup(jp_mainpanelLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jp_mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtf_origen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(26, 26, 26)
-                        .addGroup(jp_mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jtf_destino, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel5)
+                    .addGroup(jp_mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jbt_grado, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jb_agregarnodo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jb_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jp_mainpanelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(12, 12, 12)
                         .addGroup(jp_mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jb_agregarnodo)
-                            .addComponent(jb_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addGroup(jp_mainpanelLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jb_dibujar))
+                            .addGroup(jp_mainpanelLayout.createSequentialGroup()
+                                .addGroup(jp_mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtf_origen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(26, 26, 26)
+                                .addGroup(jp_mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jtf_destino, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jp_pizarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_mainpanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtf_camino, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,13 +236,18 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jp_mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jp_mainpanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
-                        .addComponent(jb_agregarnodo)
-                        .addGap(67, 67, 67)
-                        .addComponent(jb_limpiar)
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jp_pizarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jp_mainpanelLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
+                        .addComponent(jb_agregarnodo)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbt_grado)
+                        .addGap(26, 26, 26)
+                        .addComponent(jb_limpiar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jp_mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
@@ -193,12 +256,8 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jtf_origen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtf_destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jb_dibujar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jp_mainpanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jp_pizarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(33, Short.MAX_VALUE))))
+                        .addComponent(jb_dibujar)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,11 +282,11 @@ public class Main extends javax.swing.JFrame {
         cont++;
         Nodo nodo = new Nodo(cont);
         jp_pizarra.add(nodo);
-        listaNodos.add(nodo);
+        listaVertices.add(nodo);
         nodo.updateUI();
 //        for (int i = 0; i < lines.size() ; i++) {
 //            for (int j = 0; j < lines.size(); j++) {
-//                g.drawLine(listaNodos.get(lines.get(i).getX()).getX(), listaNodos.get(lines.get(i).getY()).getY(), listaNodos.get(lines.get(j).getX()).getX(), listaNodos.get(lines.get(j).getX()).getX());
+//                g.drawLine(listaVertices.get(lines.get(i).getX()).getX(), listaVertices.get(lines.get(i).getY()).getY(), listaVertices.get(lines.get(j).getX()).getX(), listaVertices.get(lines.get(j).getX()).getX());
 //            }
 //        }
     }//GEN-LAST:event_jb_agregarnodoActionPerformed
@@ -240,10 +299,10 @@ public class Main extends javax.swing.JFrame {
         if (jtf_origen.getText().equals("") || jtf_destino.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Tiene argumentos vacios");
         } else {
-            g.drawLine(listaNodos.get(Integer.parseInt(jtf_origen.getText()) - 1).getX() + 5, listaNodos.get(Integer.parseInt(jtf_origen.getText()) - 1).getY() + 5, listaNodos.get(Integer.parseInt(jtf_destino.getText()) - 1).getX() + 5, listaNodos.get(Integer.parseInt(jtf_destino.getText()) - 1).getY() + 5);
+            g.drawLine(listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1).getX() + 5, listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1).getY() + 5, listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1).getX() + 5, listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1).getY() + 5);
             lines.add(new Linea(Integer.parseInt(jtf_origen.getText()), Integer.parseInt(jtf_destino.getText())));
-            listaNodos.get(Integer.parseInt(jtf_origen.getText()) - 1).nodos.add(listaNodos.get(Integer.parseInt(jtf_destino.getText()) - 1));
-            listaNodos.get(Integer.parseInt(jtf_destino.getText()) - 1).nodos.add(listaNodos.get(Integer.parseInt(jtf_origen.getText()) - 1));
+            listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1).nodos.add(listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1));
+            listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1).nodos.add(listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1));
         }
     }//GEN-LAST:event_jb_dibujarMouseClicked
 
@@ -253,21 +312,32 @@ public class Main extends javax.swing.JFrame {
                 camino.add(Character.getNumericValue(jtf_camino.getText().charAt(i)));
             }
         }
-        System.out.println(validarcamino(camino, listaNodos.get(camino.get(0))));
+        System.out.println(validarcamino(camino, listaVertices.get(camino.get(0))));
         c.setColor(Color.RED);
-        
-        
-
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jb_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_limpiarActionPerformed
         jp_pizarra.removeAll();
         jp_pizarra.repaint();
         lines.removeAll(lines);
-        listaNodos.removeAll(listaNodos);
+        listaVertices.removeAll(listaVertices);
         cont=0;
         camino.removeAll(camino);
     }//GEN-LAST:event_jb_limpiarActionPerformed
+
+    private void jbt_gradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_gradoActionPerformed
+        int gradoMayor = listaVertices.get(0).getNodos().size();
+        String gradosVertices = "";
+        for (int i = 1; i < listaVertices.size(); i++) {
+            if (listaVertices.get(i).getNodos().size() > gradoMayor) {
+                gradoMayor = listaVertices.get(i).getNodos().size();
+            }
+            gradosVertices += "El grado del vértice "+String.valueOf(listaVertices.get(i-1).getNum())+" es: "+
+                    String.valueOf(listaVertices.get(i-1).getNodos().size())+"\n";
+        }
+        gradosVertices += "\n" + "El grado del grafo es: "+String.valueOf(gradoMayor);
+        JOptionPane.showMessageDialog(this, gradosVertices);
+    }//GEN-LAST:event_jbt_gradoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,19 +400,25 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jb_agregarnodo;
     private javax.swing.JButton jb_dibujar;
     private javax.swing.JButton jb_limpiar;
+    private javax.swing.JToggleButton jbt_grado;
+    private javax.swing.JDialog jd_grados;
     private javax.swing.JPanel jp_mainpanel;
     private javax.swing.JPanel jp_pizarra;
     private javax.swing.JTextField jtf_camino;
     private javax.swing.JTextField jtf_destino;
     private javax.swing.JTextField jtf_origen;
+    private javax.swing.JTextField jtxt_inputgradovertice;
     // End of variables declaration//GEN-END:variables
  int cont = 0;
     ArrayList<Integer> camino = new ArrayList();

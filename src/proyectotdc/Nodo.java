@@ -23,6 +23,11 @@ public class Nodo extends javax.swing.JPanel {
         this.setVisible(true);
     }
 
+    @Override
+    public String toString() {
+        return "Nodo{" + "El grado del Grafo es: " + num + '}';
+    }
+
     public Nodo() {
     }
 
