@@ -207,15 +207,15 @@ public class Main extends javax.swing.JFrame {
                                 .addGroup(jp_mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jtf_destino, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jp_pizarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_mainpanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jtf_camino, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
@@ -301,8 +301,10 @@ public class Main extends javax.swing.JFrame {
         } else {
             g.drawLine(listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1).getX() + 5, listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1).getY() + 5, listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1).getX() + 5, listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1).getY() + 5);
             lines.add(new Linea(Integer.parseInt(jtf_origen.getText()), Integer.parseInt(jtf_destino.getText())));
-            listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1).nodos.add(listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1));
-            listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1).nodos.add(listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1));
+            Nodo origen =listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1);
+            Nodo destino=listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1);
+            listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1).nodos.add(destino);
+            listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1).nodos.add(origen);
         }
     }//GEN-LAST:event_jb_dibujarMouseClicked
 
@@ -312,7 +314,7 @@ public class Main extends javax.swing.JFrame {
                 camino.add(Character.getNumericValue(jtf_camino.getText().charAt(i)));
             }
         }
-        System.out.println(validarcamino(camino, listaVertices.get(camino.get(0))));
+        System.out.println(validarcamino(camino, listaVertices.get(camino.get(1)-1)));
         c.setColor(Color.RED);
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -379,7 +381,7 @@ public class Main extends javax.swing.JFrame {
         Nodo nuevonodo = new Nodo();
         if (!camino.isEmpty()) {
             for (int i = 0; i < nodo.nodos.size(); i++) {
-                if (Integer.parseInt(camino.get(0).toString()) == nodo.nodos.get(i).getNum()) {
+                if (camino.get(0).toString().equals(nodo.nodos.get(i).getNum()+"")) {
                     camino.remove(0);
                     nuevonodo=nodo.nodos.get(i);
                     c.drawLine(nodo.getX()+5, nodo.getY()+5, nuevonodo.getX()+5, nuevonodo.getY()+5);
