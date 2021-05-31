@@ -374,7 +374,7 @@ public class Main extends javax.swing.JFrame {
         for (int i = 0; i < origen.nodos.size(); i++) {
             caminos.add(n);
             //caminos.get(i).add(origen);
-            rutaOptima(origen.nodos.get(i), fin, i);
+            rutaOptima(origen, fin, i);
             //System.out.println(caminos.get(i));
         }
         System.out.println(caminos.size());
@@ -387,15 +387,11 @@ public class Main extends javax.swing.JFrame {
         } else {
             caminos.get(pos).add(origen);
             for (Nodo e : origen.nodos) {
-                for (Nodo n : e.nodos) {
-                    if (!caminos.get(pos).contains(n)){
-                        if (n != caminos.get(pos).get(0)) {
-                            //rutaOptima(e,fin,pos);
-                        }
-                        System.out.println(e.nodos);
-                        //System.out.println(caminos.get(pos).get(0));
+                if(!caminos.get(pos).contains(e)){
+                        rutaOptima(e, fin, pos);
+//                        System.out.println(e);
                     }
-                }
+                
             }
         }  
     }
