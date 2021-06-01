@@ -315,8 +315,8 @@ public class Main extends javax.swing.JFrame {
         } else {
             g.drawLine(listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1).getX() + 5, listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1).getY() + 5, listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1).getX() + 5, listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1).getY() + 5);
             lines.add(new Linea(Integer.parseInt(jtf_origen.getText()), Integer.parseInt(jtf_destino.getText())));
-            Nodo origen =listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1);
-            Nodo destino=listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1);
+            Nodo origen = listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1);
+            Nodo destino = listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1);
             listaVertices.get(Integer.parseInt(jtf_origen.getText()) - 1).nodos.add(destino);
             listaVertices.get(Integer.parseInt(jtf_destino.getText()) - 1).nodos.add(origen);
         }
@@ -328,8 +328,18 @@ public class Main extends javax.swing.JFrame {
                 camino.add(Character.getNumericValue(jtf_camino.getText().charAt(i)));
             }
         }
+        ArrayList<Integer> novalido = new ArrayList(camino);
+        ArrayList<Integer> valido = new ArrayList(camino);
+        System.out.println(camino);
         c.setColor(Color.RED);
-        System.out.println(validarcamino(camino, listaVertices.get(camino.get(1)-1))); 
+        if (validarcamino(camino, listaVertices.get(camino.get(1) - 1))) {
+            JOptionPane.showMessageDialog(this, "Camino Válido");
+        } else {
+            c.setColor(Color.BLACK);
+            JOptionPane.showMessageDialog(this, "Camino Inválido");
+            validarcamino(novalido, listaVertices.get(novalido.get(1) - 1));
+        };
+        camino.removeAll(camino);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jb_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_limpiarActionPerformed
@@ -337,7 +347,7 @@ public class Main extends javax.swing.JFrame {
         jp_pizarra.repaint();
         lines.removeAll(lines);
         listaVertices.removeAll(listaVertices);
-        cont=0;
+        cont = 0;
         camino.removeAll(camino);
     }//GEN-LAST:event_jb_limpiarActionPerformed
 
@@ -348,10 +358,10 @@ public class Main extends javax.swing.JFrame {
             if (listaVertices.get(i).getNodos().size() > gradoMayor) {
                 gradoMayor = listaVertices.get(i).getNodos().size();
             }
-            gradosVertices += "El grado del vértice "+String.valueOf(listaVertices.get(i-1).getNum())+" es: "+
-                    String.valueOf(listaVertices.get(i-1).getNodos().size())+"\n";
+            gradosVertices += "El grado del vértice " + String.valueOf(listaVertices.get(i - 1).getNum()) + " es: "
+                    + String.valueOf(listaVertices.get(i - 1).getNodos().size()) + "\n";
         }
-        gradosVertices += "\n" + "El grado del grafo es: "+String.valueOf(gradoMayor);
+        gradosVertices += "\n" + "El grado del grafo es: " + String.valueOf(gradoMayor);
         JOptionPane.showMessageDialog(this, gradosVertices);
     }//GEN-LAST:event_jbt_gradoActionPerformed
 
@@ -366,36 +376,56 @@ public class Main extends javax.swing.JFrame {
         }
         System.out.println(camilo);
         int inicio = camilo.get(0);
-        int fin = camilo.get(camilo.size()-1);
-        ArrayList<Nodo> n = new ArrayList();
-        Nodo origen = listaVertices.get(inicio-1);
-        Nodo destino = listaVertices.get(fin-1);
+        int fin = camilo.get(camilo.size() - 1);
+        Nodo origen = listaVertices.get(inicio - 1);
+        Nodo destino = listaVertices.get(fin - 1);
+        ArrayList[] caminos = new ArrayList[origen.nodos.size()];
         //System.out.println("Inicio: "+inicio+" y destino: "+ destino);
+
         for (int i = 0; i < origen.nodos.size(); i++) {
-            caminos.add(n);
+            System.out.println(origen.nodos.get(i));
+            n.add(origen.getNum());
             //caminos.get(i).add(origen);
-            rutaOptima(origen, fin, i);
+            rutaOptima(origen.nodos.get(i), fin, i);
+            llenar(n, fin);
+            n.removeAll(n);
             //System.out.println(caminos.get(i));
         }
-        System.out.println(caminos.size());
-     
+
+        ArrayList<Integer> gradoMenor = nuevos.get(0);
+        for (int i = 1; i < nuevos.size(); i++) {
+            if (nuevos.get(i).size() < gradoMenor.size()) {
+                gradoMenor = nuevos.get(i);
+            }
+
+        }
+        System.out.println(gradoMenor);
+        c.setColor(Color.blue);
+        System.out.println(validarcamino(gradoMenor, listaVertices.get(gradoMenor.get(1) - 1)));
     }//GEN-LAST:event_jButton4ActionPerformed
+    public void llenar(ArrayList<Integer> e, int destino) {
+        if (e.get(e.size() - 1) == destino) {
+            ArrayList<Integer> myObject = new ArrayList(e);
+            nuevos.add(myObject);
+            System.out.println(nuevos);
+        }
+
+    }
 
     public void rutaOptima(Nodo origen, int fin, int pos) {
         if (origen.getNum() == fin) {
-            caminos.get(pos).add(origen);
+            n.add(origen.getNum());
         } else {
-            caminos.get(pos).add(origen);
+            n.add(origen.getNum());
             for (Nodo e : origen.nodos) {
-                if(!caminos.get(pos).contains(e)){
-                        rutaOptima(e, fin, pos);
+                if (!n.contains(e.getNum())) {
+                    rutaOptima(e, fin, pos);
 //                        System.out.println(e);
-                    }
-                
+                }
             }
-        }  
+        }
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -431,25 +461,24 @@ public class Main extends javax.swing.JFrame {
         });
     }
 
-    public boolean validarcamino(ArrayList camino, Nodo nodo) {
-        int bandera=camino.size();
+    public boolean validarcamino(ArrayList valido, Nodo nodo) {
+        int bandera = camino.size();
         Nodo nuevonodo = new Nodo();
-        if (!camino.isEmpty()) {
+        if (!valido.isEmpty()) {
             for (int i = 0; i < nodo.nodos.size(); i++) {
-                if (camino.get(0).toString().equals(nodo.nodos.get(i).getNum()+"")) {
-                    camino.remove(0);
-                    nuevonodo=nodo.nodos.get(i);
-                    c.drawLine(nodo.getX()+5, nodo.getY()+5, nuevonodo.getX()+5, nuevonodo.getY()+5);
+                if (valido.get(0).toString().equals(nodo.nodos.get(i).getNum() + "")) {
+                    valido.remove(0);
+                    nuevonodo = nodo.nodos.get(i);
+                    c.drawLine(nodo.getX() + 5, nodo.getY() + 5, nuevonodo.getX() + 5, nuevonodo.getY() + 5);
                     i = nodo.nodos.size();
                 }
             }
-            if(camino.size()==bandera){
+            if (valido.size() == bandera) {
                 return false;
-            }else{
-                return validarcamino(camino,nuevonodo);
+            } else {
+                return validarcamino(valido, nuevonodo);
             }
-        }
-        else {
+        } else {
             return true;
         }
 
@@ -481,5 +510,6 @@ public class Main extends javax.swing.JFrame {
  int cont = 0;
     ArrayList<Integer> camino = new ArrayList();
     ArrayList<Integer> camilo = new ArrayList();
-    ArrayList<ArrayList<Nodo>> caminos = new ArrayList();
+    ArrayList<Integer> n = new ArrayList();
+    ArrayList<ArrayList<Integer>> nuevos = new ArrayList();
 }
