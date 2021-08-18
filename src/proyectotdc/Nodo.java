@@ -25,7 +25,7 @@ public class Nodo extends javax.swing.JPanel {
 
     @Override
     public String toString() {
-        return "Nodo{" + "El grado del Grafo es: " + num + '}';
+        return num+" " ;
     }
 
     public Nodo() {
